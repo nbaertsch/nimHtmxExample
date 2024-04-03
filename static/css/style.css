@@ -1,0 +1,17 @@
+.htmx-indicator {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+}
+
+.htmx-request .htmx-intdicator{
+    opacity:1;
+}
+
+.htmx-request.htmx-intdicator{
+    opacity:1;
+}
+
+.contact.htmx-swapping {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+}

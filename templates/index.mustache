@@ -7,13 +7,32 @@
         <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
     </head>
     <body>
+        <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                document.addEventListener('htmx:beforeSwap', function(evt) {
+                    if (evt.detail.xhr.status === 422) {
+                        // allow 422 responses to swap as we are using this as a signal that 
+                        // a form was submitted with bad data and want to rerender with the
+                        // errors
+                        //
+                        // set isError to false to avoid error logging in console
+                        evt.detail.shouldSwap = true;
+                        evt.detail.isError = false;
+                    }
+                });
+            })
+        </script>
+        <div id="none">
+            <!-- this is a dirty htmx targeting hack so that we can safely make 'naked' oob updates - is here a better way..? -->
+        </div>
         <div id="count">
             Count: {{ count }}
         </div>
         <button hx-target="#count" hx-post="/count">Count</button>
         <hr/>
-        {{>form}}
+        {{>contacts-form}}
         <hr/>
-        {{>display}}
+        {{>contacts-display}}
+        <hr/>
     </body>
 </html>

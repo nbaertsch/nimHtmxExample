@@ -1,0 +1,15 @@
+<form id="contacts-form" hx-target="this" hx-swap="outerHTML" hx-post="/contacts">
+
+    name: <input type="text" name="name" />
+    <br/>
+    email: <input type=text" name="email" />
+    <br/>
+    <button type="submit">Create Contact</button>
+
+    {{#error}}
+    <div style="color:red">
+        {{error}}
+    </div>
+    {{/error}}
+
+</form>
